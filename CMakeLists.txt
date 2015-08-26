@@ -84,6 +84,7 @@ else()
     set(SdlTemplate_DEP_LIBS ${SdlTemplate_DEP_LIBS} ${SDL2_MAIN_LIBRARY} ${SDL2_LIBRARY})
     if(MINGW)
         set(SdlTemplate_DEP_LIBS mingw32 ${SdlTemplate_DEP_LIBS})
+	add_definitions(-D__NO_INLINE__)
     endif()
     
     include_directories("${SDL2_INCLUDE_DIR}")
