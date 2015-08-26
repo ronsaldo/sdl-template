@@ -81,7 +81,11 @@ else()
 	set(SDL2_MAIN_LIBRARY "")
     endif()
     
-    set(SdlTemplate_DEP_LIBS ${SdlTemplate_DEP_LIBS} ${SDL2_LIBRARY} ${SDL2_MAIN_LIBRARY})
+    set(SdlTemplate_DEP_LIBS ${SdlTemplate_DEP_LIBS} ${SDL2_MAIN_LIBRARY} ${SDL2_LIBRARY})
+    if(MINGW)
+        set(SdlTemplate_DEP_LIBS mingw32 ${SdlTemplate_DEP_LIBS})
+    endif()
+    
     include_directories("${SDL2_INCLUDE_DIR}")
 endif()
 
