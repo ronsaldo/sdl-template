@@ -12,7 +12,7 @@ endif ()
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Special checks for Emscripten
-if("${CMAKE_SYSTEM_NAME}" STREQUAL "Emscripten")
+if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     set(ON_EMSCRIPTEN TRUE)
 endif()
 
@@ -24,13 +24,13 @@ set(SdlTemplate_DATA_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/dist/data")
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/;${CMAKE_MODULE_PATH}")
 
 # Turn warnings and use C++ 2011.
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
 	# using Visual Studio C++
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 else()
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11")
 	if(UNIX)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -pthread")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
     endif()
 
 	# Export symbols from applications.
@@ -67,6 +67,7 @@ else()
     # For VisualStudio or mingw in Window
     find_path(SDL2_INCLUDE_DIR
       NAMES SDL.h
+      PATH_SUFFIXES SDL2
     )
 
     find_path(SDL2_LIBRARY_PATH
